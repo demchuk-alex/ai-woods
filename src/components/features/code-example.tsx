@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
+import Editor from '@monaco-editor/react';
 
 interface CodeExampleProps {
   defaultValue?: string;
@@ -17,7 +18,11 @@ export function CodeExample({
   className,
 }: CodeExampleProps) {
   const [value, setValue] = useState(defaultValue);
-  
+
+  const handleEditorChange = (value: string | undefined) => {
+    setValue(value || "");
+  };
+
   return (
     <div className={cn("rounded-md border p-4", className)}>
       <div className="mb-2 text-sm text-muted-foreground">
@@ -25,11 +30,23 @@ export function CodeExample({
       </div>
       <div className="space-y-4">
         {children}
-        <pre className={`language-${language} rounded-md bg-muted p-4`}>
-          <code className={`language-${language}`}>
-            {value || defaultValue || "// Your code here"}
-          </code>
-        </pre>
+        <div className="h-[200px] border rounded-md overflow-hidden">
+          <Editor
+            height="100%"
+            defaultLanguage={language}
+            defaultValue={defaultValue}
+            value={value}
+            onChange={handleEditorChange}
+            theme="vs-dark"
+            options={{
+              minimap: { enabled: false },
+              fontSize: 14,
+              lineNumbers: 'on',
+              scrollBeyondLastLine: false,
+              automaticLayout: true,
+            }}
+          />
+        </div>
       </div>
     </div>
   );

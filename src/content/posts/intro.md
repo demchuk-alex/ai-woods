@@ -1,13 +1,13 @@
 ---
 title: "My Journey Through the Woods of Code: Embracing Vibe Coding and Beyond"
 excerpt: "An introduction to my engineering diary where I'll document my experiences with vibe coding, traditional development approaches, and the evolution of my engineering mindset."
-coverImage: "/assets/blog/intro/intro.png"
+coverImage: "${basePath}/assets/blog/intro/intro.png"
 date: "2025-03-31T12:00:00.000Z"
 author:
   name: Alex Demchuk
-  picture: "/assets/blog/authors/alex.jpg"
+  picture: "${basePath}/assets/blog/authors/alex.jpg"
 ogImage:
-  url: "/assets/blog/intro/intro.png"
+  url: "${basePath}/assets/blog/intro/intro.png"
 ---
 
 In the depths of the digital forest, where algorithms intertwine like ancient branches and logic flows like clear streams, I've decided to document my journey through the evolving landscape of software engineering. This diary marks the beginning of my exploration into different coding paradigms, with a particular focus on the emerging concept of "vibe coding" – where AI tools generate code through natural language prompts, allowing developers to focus more on high-level problem-solving than manual syntax construction.

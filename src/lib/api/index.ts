@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { join } from "path";
 
 const postsDirectory = join(process.cwd(), "src/content/posts");
+const config = require("../../../next.config.js");
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
@@ -19,10 +20,15 @@ export function getPostBySlug(slug: string) {
     fullPath = join(postsDirectory, `${realSlug}.md`);
   }
   
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  let fileContents = fs.readFileSync(fullPath, "utf8");
+
+  fileContents = fileContents.replace(/\$\{basePath\}/gi, config.basePath);
+  
   const { data, content } = matter(fileContents);
 
-  return { ...data, slug: realSlug, content } as Post;
+  const post = { ...data, slug: realSlug, content } as Post;
+
+  return post;
 }
 
 export function getAllPosts(): Post[] {

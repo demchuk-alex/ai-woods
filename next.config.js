@@ -5,7 +5,7 @@ const nextConfig = {
   // distDir: 'dist',
   
   // These settings help with GitHub Pages and other static hosts
-  basePath: process.env.NODE_ENV === 'production' ? '/engineer-diary-blog' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/ai-woods' : '',
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
