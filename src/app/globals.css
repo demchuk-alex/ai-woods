@@ -1,3 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 160 4% 17%;
+    --foreground: 0 0% 82%;
+    --card: 160 4% 24%;
+    --card-foreground: 151 33% 71%;
+    --popover: 160 4% 30%;
+    --popover-foreground: 0 0% 82%;
+    --primary: 151 33% 71%;
+    --primary-foreground: 160 4% 17%;
+    --secondary: 160 4% 30%;
+    --secondary-foreground: 220 9% 65%;
+    --muted: 160 4% 30%;
+    --muted-foreground: 220 9% 65%;
+    --accent: 151 50% 81%;
+    --accent-foreground: 160 4% 17%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 82%;
+    --border: 160 5% 27%;
+    --input: 160 5% 27%;
+    --ring: 151 33% 71%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-primary;
+  }
+  pre, code {
+    @apply font-mono;
+  }
+}
+
+/* Font families */
+@layer base {
+  .font-heading {
+    @apply font-serif;
+  }
+}
+
+/* rehype-pretty-code syntax highlighting styles */
+@layer components {
+  /* Code blocks */
+  pre {
+    @apply p-4 rounded-lg overflow-x-auto my-6 bg-[#0d1117] text-white;
+  }
+
+  /* Inline code */
+  :not(pre) > code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  /* Line highlighting */
+  .highlighted {
+    @apply bg-yellow-100/20 dark:bg-yellow-900/30 block border-l-4 border-yellow-500 pl-2 -ml-4;
+  }
+
+  /* Word highlighting */
+  .word {
+    @apply bg-blue-100/30 dark:bg-blue-900/30 p-1 rounded font-semibold;
+  }
+
+  /* Enhance prose styling for MDX content */
+  .mdx-content {
+    @apply prose dark:prose-invert max-w-none
+           prose-headings:font-serif prose-headings:font-bold prose-headings:text-primary
+           prose-h1:text-3xl prose-h1:md:text-4xl prose-h1:lg:text-5xl 
+           prose-h2:text-2xl prose-h2:md:text-3xl 
+           prose-p:text-lg prose-p:text-foreground
+           prose-li:text-lg prose-li:text-foreground
+           prose-pre:bg-transparent prose-pre:p-0
+           prose-img:rounded-lg 
+           prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent/80 hover:prose-a:underline;
+  }
+}

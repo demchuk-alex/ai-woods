@@ -1,74 +1,86 @@
-# A statically generated blog example using Next.js, Markdown, and TypeScript
+# AI Woods - Engineering Diary
 
-This is the existing [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) plus TypeScript.
+A developer's journal exploring the dense, evolving forest of modern coding. This blog serves as a personal engineering diary and technical journal, documenting experiences with various development approaches, including vibe coding.
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates) feature using Markdown files as the data source.
+## Features
 
-The blog posts are stored in `/_posts` as Markdown files with front matter support. Adding a new Markdown file in there will create a new blog post.
+- Static site generation with Next.js 14
+- Markdown content with MDX support for interactive examples
+- Modern, forest-themed design with:
+  - Custom color scheme inspired by woodland aesthetics
+  - Elegant typography using Fraunces for headings and Inter for body text
+  - Responsive layout with card-based design
+- Dark/Light theme support with carefully crafted color palettes
+- Interactive post previews with hover effects
+- Organized content sections:
+  - Recent Posts showcase
+  - Complete post archive with compact view
+- Responsive design optimized for all devices
+- Built with TypeScript for type safety
 
-To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) and [`remark-html`](https://github.com/remarkjs/remark-html) to convert the Markdown files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and also sent in props to the page.
+## Content Structure
 
-## Demo
+The blog content is organized in `/_posts` as Markdown files with front matter support. Each post can include:
+- Title and excerpt
+- Cover image
+- Author information
+- Publication date
+- Rich content with code highlighting
+- Interactive MDX components
 
-[https://next-blog-starter.vercel.app/](https://next-blog-starter.vercel.app/)
+## Development
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/blog-starter)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/blog-starter&project-name=blog-starter&repository-name=blog-starter)
-
-### Related examples
-
-- [AgilityCMS](/examples/cms-agilitycms)
-- [Builder.io](/examples/cms-builder-io)
-- [ButterCMS](/examples/cms-buttercms)
-- [Contentful](/examples/cms-contentful)
-- [Cosmic](/examples/cms-cosmic)
-- [DatoCMS](/examples/cms-datocms)
-- [DotCMS](/examples/cms-dotcms)
-- [Drupal](/examples/cms-drupal)
-- [Enterspeed](/examples/cms-enterspeed)
-- [Ghost](/examples/cms-ghost)
-- [GraphCMS](/examples/cms-graphcms)
-- [Kontent.ai](/examples/cms-kontent-ai)
-- [MakeSwift](/examples/cms-makeswift)
-- [Payload](/examples/cms-payload)
-- [Plasmic](/examples/cms-plasmic)
-- [Prepr](/examples/cms-prepr)
-- [Prismic](/examples/cms-prismic)
-- [Sanity](/examples/cms-sanity)
-- [Sitecore XM Cloud](/examples/cms-sitecore-xmcloud)
-- [Sitefinity](/examples/cms-sitefinity)
-- [Storyblok](/examples/cms-storyblok)
-- [TakeShape](/examples/cms-takeshape)
-- [Tina](/examples/cms-tina)
-- [Umbraco](/examples/cms-umbraco)
-- [Umbraco heartcore](/examples/cms-umbraco-heartcore)
-- [Webiny](/examples/cms-webiny)
-- [WordPress](/examples/cms-wordpress)
-- [Blog Starter](/examples/blog-starter)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+To start the development server:
 
 ```bash
-npx create-next-app --example blog-starter blog-starter-app
+bun run dev
 ```
+
+## Build Static Site
+
+To build the static site:
 
 ```bash
-yarn create next-app --example blog-starter blog-starter-app
+bun run export
 ```
+
+This generates the static files in the `out` directory.
+
+## Local Testing
+
+To test the static build locally:
 
 ```bash
-pnpm create next-app --example blog-starter blog-starter-app
+bun run serve
 ```
 
-Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+This will start a local server at http://localhost:3000.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Technologies
 
-# Notes
+- Next.js 14
+- Tailwind CSS
+- MDX for interactive content
+- TypeScript
+- Bun
+- shadcn/ui components
+- Custom theme system
 
-`blog-starter` uses [Tailwind CSS](https://tailwindcss.com) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3).
+## Design Philosophy
+
+The blog's design draws inspiration from forest aesthetics, creating a calm and focused reading environment. The color scheme uses carefully selected grey-green tones that work harmoniously in both light and dark modes, complemented by mint accents for interactive elements.
+
+Typography choices enhance readability while adding character:
+- Fraunces (serif) for headings
+- Inter (sans-serif) for body text
+- JetBrains Mono for code blocks
+
+The layout prioritizes content clarity with:
+- Compact, efficient spacing
+- Clear visual hierarchy
+- Smooth interactions
+- Responsive design that adapts to any screen size
+
+---
+
+Made with ❤️ by Alex Demchuk as a vibe coding demonstration

@@ -1,0 +1,113 @@
+---
+title: "Exploring MDX in My Engineering Diary"
+excerpt: "A demonstration of using MDX to create interactive and dynamic content in blog posts, perfect for sharing code examples and technical concepts."
+coverImage: "/assets/blog/highlight/code_highlight.png"
+date: "2025-03-31T13:00:00.000Z"
+author:
+  name: Alex Demchuk
+  picture: "/assets/blog/authors/alex.jpg"
+ogImage:
+  url: "/assets/blog/highlight/code_highlight.png"
+---
+
+# The Power of MDX for Technical Blogging
+
+MDX combines the simplicity of Markdown with the power of JSX, allowing you to include React components directly in your content. This is perfect for an engineering diary where you might want to showcase interactive examples, code snippets with proper syntax highlighting, or custom visualizations.
+
+## Basic MDX Features
+
+MDX supports all standard Markdown features like:
+
+- **Bold text** and *italic text*
+- Lists (like this one!)
+- [Links](https://mdxjs.com/)
+- `inline code` with backticks
+
+## Syntax Highlighting with rehype-pretty-code
+
+Code blocks are automatically syntax-highlighted using the Shiki highlighter:
+
+```javascript
+// Regular code block with JavaScript syntax highlighting
+function helloWorld() {
+  console.log("Hello, Engineering Diary!");
+  return "Vibe coding in action!";
+}
+```
+
+### Line Highlighting
+
+You can highlight specific lines by adding line numbers in curly braces:
+
+```typescript {3,5-6}
+// The TypeScript class with highlighted lines 3, 5-6
+export class VibeCodeGenerator {
+  constructor(private prompt: string) {}
+  
+  generate() {
+    return `AI generated code from: ${this.prompt}`;
+  }
+}
+```
+
+### Highlighting Specific Words
+
+You can also highlight specific words or phrases:
+
+```jsx /useState/ /useEffect/
+// React component with highlighted words
+import React, { useState, useEffect } from 'react';
+
+function ExampleComponent() {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, [count]);
+  
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+```
+
+## Why MDX is Perfect for Vibe Coding
+
+As I explore "vibe coding" - using AI to generate code through natural language prompts - having the ability to embed interactive components becomes crucial. I can demonstrate:
+
+1. The prompt I used
+2. The generated code (with syntax highlighting)
+3. An interactive example of the result
+
+All in the same post, creating a seamless experience for readers.
+
+## Interactive Examples (Coming Soon)
+
+Once we add custom React components to our blog, we'll be able to create truly interactive examples right in these posts. Imagine embedded code editors, sliders that adjust parameters in real-time, or even mini-applications that demonstrate concepts.
+
+That's when the true power of MDX will shine through in this engineering diary.
+
+Until then, happy coding!
+
+## What's Next?
+
+In future posts, I'll explore more advanced MDX features, including:
+
+1. Interactive React components embedded directly in blog posts
+2. Custom visualizations and charts
+3. Code playgrounds with editable examples
+
+Stay tuned for more engineering insights and coding adventures!
+
+<CodeExample 
+  language="typescript" 
+  defaultValue="// Try editing this code directly!
+function greet(name: string) {
+  return `Hello, ${name}!`;
+}
+">
+  <p>This is an editable code example. You can interact with it directly.</p>
+</CodeExample> 

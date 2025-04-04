@@ -1,17 +1,29 @@
-import Footer from "@/app/_components/footer";
-import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
+import Footer from "@/components/features/footer";
+import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/constants";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import cn from "classnames";
-import { ThemeSwitcher } from "./_components/theme-switcher";
+import { ThemeSwitcher } from "@/components/features/theme-switcher";
+import Script from "next/script";
+import DarkReaderFix from "@/components/features/darkreader-fix";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
-  title: `Next.js Blog Example with ${CMS_NAME}`,
-  description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
+  title: `Engineer Diary Blog with ${CMS_NAME}`,
+  description: `A statically generated engineer diary blog using ${CMS_NAME}.`,
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
   },
@@ -23,8 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="darkreader-lock" content="true" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -56,13 +69,45 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        
+        <Script id="cleanup-extension-attributes" strategy="beforeInteractive">
+          {`
+            (function() {
+              function cleanupExtensionAttributes() {
+                try {
+                  const elements = document.querySelectorAll('[data-darkreader-inline-color]');
+                  elements.forEach(el => {
+                    el.removeAttribute('data-darkreader-inline-color');
+                    if (el.style && el.style.cssText.includes('--darkreader-inline-color')) {
+                      el.style.cssText = el.style.cssText.replace(/--darkreader-inline-color:[^;]+;?/g, '');
+                    }
+                  });
+                } catch (e) {
+                  console.error('Cleanup failed:', e);
+                }
+              }
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', cleanupExtensionAttributes);
+              } else {
+                cleanupExtensionAttributes();
+              }
+            })();
+          `}
+        </Script>
       </head>
-      <body
-        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
-      >
-        <ThemeSwitcher />
-        <div className="min-h-screen">{children}</div>
-        <Footer />
+      <body className={cn(
+        inter.variable, 
+        montserrat.variable, 
+        inter.className, 
+        "min-h-screen antialiased"
+      )}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <DarkReaderFix />
+          <ThemeSwitcher />
+          <div className="flex min-h-screen flex-col">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

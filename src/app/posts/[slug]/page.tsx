@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
-import markdownToHtml from "@/lib/markdownToHtml";
-import Alert from "@/app/_components/alert";
-import Container from "@/app/_components/container";
-import Header from "@/app/_components/header";
-import { PostBody } from "@/app/_components/post-body";
-import { PostHeader } from "@/app/_components/post-header";
+import { CMS_NAME } from "@/constants";
+import markdownToHtml, { markdownToMdx } from "@/lib/utils/markdown";
+import Container from "@/components/features/container";
+import Header from "@/components/features/header";
+import { PostBody } from "@/components/features/post-body";
+import { PostHeader } from "@/components/features/post-header";
+import BackButton from "@/components/features/back-button";
 
 export default async function Post(props: Params) {
   const params = await props.params;
@@ -17,13 +17,20 @@ export default async function Post(props: Params) {
     return notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
+  // Check if the content should be treated as MDX
+  const isMdx = post.content.includes('import') || post.content.includes('export') || post.content.includes('<');
+  
+  // Process content based on type
+  const content = isMdx 
+    ? await markdownToMdx(post.content || "") 
+    : await markdownToHtml(post.content || "");
 
   return (
     <main>
-      <Alert preview={post.preview} />
+      <div className="fixed top-4 left-4 z-50">
+        <BackButton />
+      </div>
       <Container>
-        <Header />
         <article className="mb-32">
           <PostHeader
             title={post.title}
@@ -31,7 +38,7 @@ export default async function Post(props: Params) {
             date={post.date}
             author={post.author}
           />
-          <PostBody content={content} />
+          <PostBody content={content} isMdx={isMdx} />
         </article>
       </Container>
     </main>
@@ -52,7 +59,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const title = `${post.title} | Engineer Diary Blog`;
 
   return {
     title,
