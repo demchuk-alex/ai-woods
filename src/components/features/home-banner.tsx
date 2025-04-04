@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 import Container from "./container";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import config from "../../../next.config.js";
 
 export function HomeBanner() {
   // Use client-side only rendering for the image to avoid hydration issues
   const [isMounted, setIsMounted] = useState(false);
+  const basePath = config.basePath;
   
   useEffect(() => {
     setIsMounted(true);
@@ -20,7 +22,7 @@ export function HomeBanner() {
         <Card className="overflow-hidden border-0 shadow-xl">
           <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
             <Image 
-              src="/assets/blog/home-banner/banner.png"
+              src={`${basePath}/assets/blog/home-banner/banner.png`}
               alt="Engineer Diary Blog Banner"
               fill
               priority
